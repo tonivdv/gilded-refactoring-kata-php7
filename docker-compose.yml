@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  php:
+    build:
+      dockerfile: etc/build/php/Dockerfile
+      context: .
+    image: tonivdv/gilded-refactoring-kata-php:1.0
+    working_dir: /app
+    volumes:
+      - .:/app:cached
+
+  php-cs-fixer:
+    image: adlogix/php-cs-fixer:2.16.1
+    command: /usr/local/bin/php-cs-fixer
+    volumes:
+        - .:/src:cached
+    working_dir: /src
+
+  phpstan:
+    build:
+      dockerfile: etc/build/phpstan/Dockerfile
+      context: .
+    working_dir: /app
+    volumes:
+      - .:/app:cached
