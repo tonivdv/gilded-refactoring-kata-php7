@@ -56,7 +56,7 @@ analyse-code:
 
 phpstan.update-baseline: ## Update the baseline of phpstan
 
-	-docker-compose run --rm -u $(USERID):$(GROUPID) -T phpstan analyse -c phpstan.neon -l max --error-format baselineNeon src tests >phpstan-baseline.neon
+	-docker-compose run --rm -u $(USERID):$(GROUPID) -T phpstan analyse -c phpstan.neon -l max --error-format baselineNeon src test >phpstan-baseline.neon
 
 composer: ## Allow to use the composer command. Usage: make composer c='require symfony/assets'
 

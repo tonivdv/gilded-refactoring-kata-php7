@@ -1,0 +1,32 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property App\\\\Item\\:\\:\\$name has no typehint specified\\.$#"
+			count: 1
+			path: src/Item.php
+
+		-
+			message: "#^Property App\\\\Item\\:\\:\\$sell_in has no typehint specified\\.$#"
+			count: 1
+			path: src/Item.php
+
+		-
+			message: "#^Property App\\\\Item\\:\\:\\$quality has no typehint specified\\.$#"
+			count: 1
+			path: src/Item.php
+
+		-
+			message: "#^Method App\\\\Item\\:\\:__construct\\(\\) has parameter \\$name with no typehint specified\\.$#"
+			count: 1
+			path: src/Item.php
+
+		-
+			message: "#^Method App\\\\Item\\:\\:__construct\\(\\) has parameter \\$quality with no typehint specified\\.$#"
+			count: 1
+			path: src/Item.php
+
+		-
+			message: "#^Method App\\\\Item\\:\\:__construct\\(\\) has parameter \\$sell_in with no typehint specified\\.$#"
+			count: 1
+			path: src/Item.php
+
