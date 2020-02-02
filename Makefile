@@ -1,5 +1,5 @@
-DOCKER_HOST                          ?= localhost
-UNAME_S 							 := $(shell uname -s)
+DOCKER_HOST   ?= localhost
+UNAME_S       := $(shell uname -s)
 
 USERID=$(shell id -u)
 GROUPID=$(shell id -g)
@@ -34,7 +34,7 @@ upgrade: ## Upgrades the docker images
 	docker-compose build --build-arg DOCKER_HOST_ADDR=${DOCKER_HOST} --pull
 	docker-compose pull
 
-test: ## Simply runs the tests assuming the test environment was previously setup via ``make it-run-test
+test: ## Simply runs the tests assuming the test environment was previously setup via `make build`
 
 	docker-compose run --rm -u $(USERID):$(GROUPID) -T php sh -lc './vendor/bin/phpunit'
 
@@ -77,12 +77,6 @@ composer-update: ## Allows to update 1 or all composer vendors. Usage: make comp
 ps:	## List all containers
 
 	docker-compose ps
-
-pstorm:	## Configures phpstorm phpunit debugging configuration
-
-	$(eval MYSQL_PORT := $(shell docker-compose port mysql 3306))
-	$(eval RABBITMQ_PORT := $(shell docker-compose port rabbitmq 5672))
-	@etc/dev/make/pstorm.sh $(DOCKER_HOST) $(MYSQL_PORT) $(RABBITMQ_PORT)
 
 logs: ## Shows the logs of a container. Use 's' variable to filter on a specific container.
 
