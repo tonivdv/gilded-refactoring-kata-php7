@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Item\GildedItem;
 use Webmozart\Assert\Assert;
 
 final class GildedRose

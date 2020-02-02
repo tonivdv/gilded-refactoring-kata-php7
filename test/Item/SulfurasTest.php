@@ -1,19 +1,11 @@
 <?php
-/*
- * This file is part of the Adlogix package.
- *
- * (c) Allan Segebarth <allan@adlogix.eu>
- * (c) Jean-Jacques Courtens <jjc@adlogix.eu>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
 namespace App\Tests\Item;
 
-
-use App\GildedRose;
 use App\Item;
+use App\Name;
+use App\Quality;
+use App\SellIn;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,10 +18,9 @@ final class SulfurasTest extends TestCase
      */
     public function sulfurasItem_shouldNeverBeSoldOrIncreaseInQuality(): void
     {
-        $item = new Item("Sulfuras, Hand of Ragnaros", 10, 80);
-        $sulfuras = new Item\Sulfuras($item);
+        $sulfuras = new Item\Sulfuras(Name::valueOf("Sulfuras"), SellIn::valueOf(1), Quality::valueOf(10, 80));
         $sulfuras->updateQuality();
-        $this->assertEquals(10, $item->sell_in);
-        $this->assertEquals(80, $item->quality);
+        $this->assertEquals(SellIn::valueOf(1), $sulfuras->sellIn());
+        $this->assertEquals(Quality::valueOf(10, 80), $sulfuras->quality());
     }
 }

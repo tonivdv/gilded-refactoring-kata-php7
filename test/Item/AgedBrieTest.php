@@ -3,8 +3,14 @@
 namespace App\Tests\Item;
 
 use App\Item;
+use App\Name;
+use App\Quality;
+use App\SellIn;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Toni Van de Voorde
+ */
 final class AgedBrieTest extends TestCase
 {
     /**
@@ -12,9 +18,33 @@ final class AgedBrieTest extends TestCase
      */
     public function whenAgedBrieGetsOlder_ensureItsQualityIncreases(): void
     {
-        $item = new Item("Aged Brie", 10, 10);
-        $agedBrie = new Item\AgedBrie($item);
+        $agedBrie = new Item\AgedBrie(
+            Name::valueOf("Aged Brie"),
+            SellIn::valueOf(10),
+            Quality::valueOf(10, 50)
+        );
+
         $agedBrie->updateQuality();
-        $this->assertEquals(11, $agedBrie->quality());
+
+        $this->assertEquals(Quality::valueOf(11, 50), $agedBrie->quality());
+    }
+
+    /**
+     * @test
+     */
+    public function whenAgedBrieGetsOlder_ensureQualityIsMax50(): void
+    {
+        $agedBrie = new Item\AgedBrie(
+            Name::valueOf("Aged Brie"),
+            SellIn::valueOf(10),
+            Quality::valueOf(50, 50)
+        );
+
+        $agedBrie->updateQuality();
+        $agedBrie->updateQuality();
+        $agedBrie->updateQuality();
+        $agedBrie->updateQuality();
+
+        $this->assertEquals(Quality::valueOf(50, 50), $agedBrie->quality());
     }
 }

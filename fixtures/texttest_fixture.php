@@ -20,7 +20,13 @@ $items = array(
     new Item('Conjured Mana Cake', 3, 6)
 );
 
-$app = new GildedRose($items);
+$gildedItems = [];
+
+foreach($items as $item) {
+    $gildedItems[] = Item\GildedItemFactory::fromItem($item);
+}
+
+$app = new GildedRose($gildedItems);
 
 $days = 2;
 if (count($argv) > 1) {
@@ -30,8 +36,8 @@ if (count($argv) > 1) {
 for ($i = 0; $i < $days; $i++) {
     echo("-------- day $i --------\n");
     echo("name, sellIn, quality\n");
-    foreach ($items as $item) {
-        echo $item . PHP_EOL;
+    foreach ($gildedItems as $gildedItem) {
+        echo Item\GildedItemFactory::toItem($gildedItem) . PHP_EOL;
     }
     echo PHP_EOL;
     $app->updateQuality();
