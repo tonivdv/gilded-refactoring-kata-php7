@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tonivdv/gilded-refactoring-kata-php7.svg?branch=feature%2Frefactor-kata)](https://travis-ci.org/tonivdv/gilded-refactoring-kata-php7)
+
 Requirements
 ------------
 
